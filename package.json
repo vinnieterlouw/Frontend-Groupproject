@@ -37,5 +37,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This is a simple react/redux/jwt template to start a project quickly",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinnieterlouw/Frontend-Groupproject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinnieterlouw/Frontend-Groupproject/issues"
+  },
+  "homepage": "https://github.com/vinnieterlouw/Frontend-Groupproject#readme"
 }
