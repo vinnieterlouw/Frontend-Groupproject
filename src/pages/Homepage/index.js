@@ -14,7 +14,7 @@ export default function Homepage() {
           />
           <div class="absolute top-2 right-2">
             {" "}
-            <button class="h-10 w-20 mt-4 text-white rounded-lg bg-blue-500 hover:bg-red-600">
+            <button class="h-10 w-20 mt-4 text-white rounded-lg bg-blue-500 hover:bg-blue-600">
               Search
             </button>
           </div>
