@@ -3,8 +3,16 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
+import { useDispatch } from "react-redux";
+import { dataHomepage } from "../../store/home/actions";
+import { useState } from "react";
 
 export default function Homepage() {
+  const dispatch = useDispatch();
+  const [location, setLocation] = useState({
+    lat: null,
+    lng: null,
+  });
   const methods = usePlacesAutocomplete({
     // Provide the cache time in seconds, default is 24 hours
     cache: 24 * 60 * 60,
@@ -46,11 +54,18 @@ export default function Homepage() {
         .then((results) => getLatLng(results[0]))
         .then(({ lat, lng }) => {
           console.log("📍 Coordinates: ", { lat, lng });
+          // store to local state
+          setLocation({ lat, lng });
         })
         .catch((error) => {
           console.log("😱 Error: ", error);
         });
     };
+
+  const sumbitSearch = () => {
+    const { lat, lng } = location;
+    dispatch(dataHomepage(lat, lng));
+  };
 
   const renderSuggestions = () =>
     data.map((suggestion) => {
@@ -82,7 +97,10 @@ export default function Homepage() {
             onChange={handleInput}
             disabled={!ready}
           />
-          <button class="h-10 w-20 mt-4 text-white rounded-lg bg-blue-500 hover:bg-blue-600 ml-10">
+          <button
+            onClick={sumbitSearch}
+            class="h-10 w-20 mt-4 text-white rounded-lg bg-blue-500 hover:bg-blue-600 ml-10"
+          >
             Search
           </button>
           <div>{status === "OK" && <ul>{renderSuggestions()}</ul>}</div>
