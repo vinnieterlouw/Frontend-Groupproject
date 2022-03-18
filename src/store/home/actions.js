@@ -5,12 +5,14 @@ export const getHomeData = (homeData) => ({
   payload: homeData,
 });
 
-export const dataHomepage = (lat, lng) => {
+export const dataHomepage = (lat, lng, radius, placeType) => {
   return async (dispatch, getState) => {
     try {
       const response = await axios.post("http://localhost:4000/homeData", {
         lat,
         lng,
+        radius,
+        placeType,
       });
 
       dispatch(getHomeData(response.data.homeData.results));
