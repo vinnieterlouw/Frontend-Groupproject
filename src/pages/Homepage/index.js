@@ -3,20 +3,23 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dataHomepage } from "../../store/home/actions";
 import { useState } from "react";
+import { selectHomeData } from "../../store/home/selector";
 
 export default function Homepage() {
+  const homeData = useSelector(selectHomeData);
+  console.log("this is selector", homeData);
   const dispatch = useDispatch();
   const [location, setLocation] = useState({
     lat: null,
     lng: null,
   });
-  const methods = usePlacesAutocomplete({
-    // Provide the cache time in seconds, default is 24 hours
-    cache: 24 * 60 * 60,
-  });
+  //   const methods = usePlacesAutocomplete({
+  //     // Provide the cache time in seconds, default is 24 hours
+  //     cache: 24 * 60 * 60,
+  //   });
 
   const {
     ready,
@@ -82,7 +85,7 @@ export default function Homepage() {
     });
 
   return (
-    <div class="bg-gray-200">
+    <div>
       <div class="container h-screen flex align-center items-top flex-column">
         {/* <div class="absolute top-4 left-3 ">
             {" "}
@@ -91,7 +94,7 @@ export default function Homepage() {
         <div ref={ref}>
           <input
             type="text"
-            class="h-14 w-96 mt-4 pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"
+            class="h-14 w-96 mt-4 pl-10 pr-20 rounded-lg z-0 focus:shadow bg-gray-200 focus:outline-none"
             placeholder="Search anything..."
             value={value}
             onChange={handleInput}
@@ -104,6 +107,53 @@ export default function Homepage() {
             Search
           </button>
           <div>{status === "OK" && <ul>{renderSuggestions()}</ul>}</div>
+        </div>
+        <div>
+          {homeData
+            ? homeData.map((data) => {
+                return (
+                  <div class="flex justify-center m-5">
+                    <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
+                      {data.photos?.length ? (
+                        data.photos.map((photos) => {
+                          console.log(
+                            "this is the photoref",
+                            photos.photo_reference
+                          );
+                          return (
+                            <img
+                              class=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg"
+                              src={`https://maps.googleapis.com/maps/api/place/photo?photo_reference=${photos.photo_reference}&maxwidth=300&key=AIzaSyDGnhMSdxZWn2pTKvaimAKqZif3PqA7LwY`}
+                              alt=""
+                            />
+                          );
+                        })
+                      ) : (
+                        <img
+                          class=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg"
+                          src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
+                          alt=""
+                        />
+                      )}
+
+                      <div class="p-6 flex flex-col justify-start">
+                        <h5 class="text-gray-900 text-xl font-medium mb-2">
+                          {data.name}
+                        </h5>
+                        <p class="text-gray-700 text-base mb-4">
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This content is
+                          a little bit longer.
+                        </p>
+                        <p class="text-gray-600 text-xs">
+                          Last updated 3 mins ago
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            : "Start Searching!"}
         </div>
       </div>
     </div>
