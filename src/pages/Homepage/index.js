@@ -203,11 +203,7 @@ export default function Homepage() {
                         <h5 className="text-gray-900 text-xl font-medium mb-2">
                           {data.name}
                         </h5>
-                        {data.icon ? (
-                          <img className="w-5" src={data.icon} alt="" />
-                        ) : (
-                          ""
-                        )}
+
                         <p className="text-gray-700 text-base mb-4">
                           Adress: {data.vicinity}
                         </p>
