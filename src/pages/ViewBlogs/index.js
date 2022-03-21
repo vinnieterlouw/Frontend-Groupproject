@@ -1,26 +1,17 @@
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
-import useOnclickOutside from "react-cool-onclickoutside";
 import { useDispatch } from "react-redux";
-import { dataHomepage } from "../../store/home/actions";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectAllBlogsWithUserName } from "../../store/blog/selector";
 import { fetchAllBlogsWithUserName } from "../../store/blog/actions";
-import { selectHomeData } from "../../store/home/selector";
 import React from "react";
 import { NavLink } from "react-router-dom";
-
 
 export default function ViewBlogs() {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredBlogs, setFilteredBlogs] = useState([]);
-  
- const blogs = useSelector(selectAllBlogsWithUserName);
- 
+
+  const blogs = useSelector(selectAllBlogsWithUserName);
 
   useEffect(() => {
     dispatch(fetchAllBlogsWithUserName);
@@ -30,24 +21,19 @@ export default function ViewBlogs() {
     setFilteredBlogs(blogs);
   }, [blogs]);
 
-
   useEffect(() => {
     if (searchTerm.length > 0) {
       setFilteredBlogs(
         [...blogs].filter(
           (blog) =>
-            blog.title
-              .toLowerCase()
-              .includes(searchTerm.toLocaleLowerCase()) ||
+            blog.title.toLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
             blog.location.toLowerCase().includes(searchTerm.toLocaleLowerCase())
         )
       );
     } else {
       return setFilteredBlogs(blogs);
     }
-  }, [searchTerm]);
-
- 
+  }, [searchTerm, blogs]);
 
   return (
     <div>
