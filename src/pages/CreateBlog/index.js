@@ -2,10 +2,9 @@ import { useState } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { createBlog } from "../../store/blog/actions";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { apiUrl } from "../../config/constants";
+
 import { useSelector } from "react-redux";
-import { selectUser } from "../../store/user/selectors";    
+import { selectUser } from "../../store/user/selectors";
 
 export default function CreateBlog() {
   const user = useSelector(selectUser);
@@ -17,7 +16,6 @@ export default function CreateBlog() {
   const [visitedOn, setvisitedOn] = useState();
   const urls = [];
   const [images, setImages] = useState(urls);
-
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -50,50 +48,118 @@ export default function CreateBlog() {
       urls.push(file.url);
     }
     setImages(urls);
-    }
-    return (
-    <div style={{marginTop:"70px",display:"flex",alignItems:"center",justifyContent:"center"}}>
-         <Form>
-            <Form.Group as={Row} className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label column sm={3}>Title:</Form.Label>
-                <Col sm={8}>
-                <Form.Control type="text" placeholder="Enter title" value={title} onChange={(e)=>setTitle(e.target.value)} />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label column sm={6}>Share Experience:</Form.Label>
-                <Col sm={12}>
-                <Form.Control as="textarea" rows={10} value={description} onChange={(e)=>setDescription(e.target.value)}/>
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="exampleForm.ControlInput2">
-                <Form.Label column sm={4}>Location</Form.Label>
-                <Col sm={8}>
-                <Form.Control type="text" placeholder="Location" value={location} onChange={(e)=>setLocation(e.target.value)} />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="exampleForm.ControlInput6">
-                <Form.Label column sm={4}>Place</Form.Label>
-                <Col sm={8}>
-                <Form.Control type="text" placeholder="Place name" value={place} onChange={(e)=>setPlace(e.target.value)} />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="exampleForm.ControlInput3">
-                <Form.Label column sm={4}>Visited On</Form.Label>
-                <Col sm={8}>
-                <Form.Control type="date" value= {visitedOn} onChange={(e)=>setvisitedOn(e.target.value)} />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="formFile" className="mb-3">
-            <Form.Label column sm={4}>Upload Pictures</Form.Label>
-            <Col sm={4}>
-            <Form.Control type="file" multiple onClick={(e) => e.stopPropagation()} onChange = {uploadImage}/>
-            </Col>
-            </Form.Group> 
-            <Button variant="secondary" type="submit" onClick={handleSubmit}>
-             Submit
-            </Button>  
-        </Form>
+  };
+  return (
+    <div
+      style={{
+        marginTop: "70px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Form>
+        <Form.Group
+          as={Row}
+          className="mb-3"
+          controlId="exampleForm.ControlInput1"
+        >
+          <Form.Label column sm={3}>
+            Title:
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control
+              type="text"
+              placeholder="Enter title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </Col>
+        </Form.Group>
+        <Form.Group
+          as={Row}
+          className="mb-3"
+          controlId="exampleForm.ControlTextarea1"
+        >
+          <Form.Label column sm={6}>
+            Share Experience:
+          </Form.Label>
+          <Col sm={12}>
+            <Form.Control
+              as="textarea"
+              rows={10}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </Col>
+        </Form.Group>
+        <Form.Group
+          as={Row}
+          className="mb-3"
+          controlId="exampleForm.ControlInput2"
+        >
+          <Form.Label column sm={4}>
+            Location
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control
+              type="text"
+              placeholder="Location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            />
+          </Col>
+        </Form.Group>
+        <Form.Group
+          as={Row}
+          className="mb-3"
+          controlId="exampleForm.ControlInput6"
+        >
+          <Form.Label column sm={4}>
+            Place
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control
+              type="text"
+              placeholder="Place name"
+              value={place}
+              onChange={(e) => setPlace(e.target.value)}
+            />
+          </Col>
+        </Form.Group>
+        <Form.Group
+          as={Row}
+          className="mb-3"
+          controlId="exampleForm.ControlInput3"
+        >
+          <Form.Label column sm={4}>
+            Visited On
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control
+              type="date"
+              value={visitedOn}
+              onChange={(e) => setvisitedOn(e.target.value)}
+            />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} controlId="formFile" className="mb-3">
+          <Form.Label column sm={4}>
+            Upload Pictures
+          </Form.Label>
+          <Col sm={4}>
+            <Form.Control
+              type="file"
+              multiple
+              onClick={(e) => e.stopPropagation()}
+              onChange={uploadImage}
+            />
+          </Col>
+        </Form.Group>
+        <Button variant="secondary" type="submit" onClick={handleSubmit}>
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 }
