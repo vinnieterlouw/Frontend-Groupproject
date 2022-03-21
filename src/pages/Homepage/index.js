@@ -152,10 +152,16 @@ export default function Homepage() {
                 onChange={(e) => setType(e.target.value)}
               >
                 <option selected>Type of place</option>
-                <option value="Restaurant">Restaurant</option>
+                <option value="Airport">Airport</option>
+                <option value="Club">Club</option>
+                <option value="Cafe">Cafe</option>
+                <option value="Coffeeshop">Coffeeshop</option>
                 <option value="Hospital">Hospital</option>
                 <option value="Hotel">Hotel</option>
                 <option value="Museum">Museum</option>
+                <option value="Restaurant">Restaurant</option>
+                <option value="Supermarket">Supermarket</option>
+                <option value="School">School</option>
               </select>
             </div>
             <button
