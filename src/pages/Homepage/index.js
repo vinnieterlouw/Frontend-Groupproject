@@ -17,7 +17,7 @@ export default function Homepage() {
     lat: null,
     lng: null,
   });
-  const [range, setRange] = useState("");
+  const [range, setRange] = useState(5000);
   const [type, setType] = useState("");
   console.log(type);
   //   const methods = usePlacesAutocomplete({
