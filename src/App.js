@@ -14,13 +14,6 @@ import ViewBlogs from "./pages/ViewBlogs";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
-import { Jumbotron } from "react-bootstrap";
-
-const Other = () => (
-  <Jumbotron>
-    <h1>Other</h1>
-  </Jumbotron>
-);
 
 function App() {
   const dispatch = useDispatch();
@@ -37,11 +30,11 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Routes>
         <Route exact path="/" element={<Homepage />} />
-        {/* <Route path="/blogs" element={<ViewBlogs />} />
-        <Route path="/blogs/:blogsId" element={<ViewBlogs />} /> */}
+        <Route path="/blogs" element={<ViewBlogs />} />
+        <Route path="/blogs/:blogsId" element={<ViewBlogs />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="blogs/createblog" element={<CreateBlog/>} />
+        <Route path="blogs/createblog" element={<CreateBlog />} />
       </Routes>
     </div>
   );
