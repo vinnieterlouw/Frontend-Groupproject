@@ -47,6 +47,7 @@ export default function CreateBlog() {
       const file = await res.json();
       urls.push(file.url);
     }
+    console.log(urls);
     setImages(urls);
   };
   return (
@@ -154,8 +155,13 @@ export default function CreateBlog() {
               onClick={(e) => e.stopPropagation()}
               onChange={uploadImage}
             />
+            <p>Wait for preview before uploading</p>
           </Col>
         </Form.Group>
+        <div className="upload-image">
+          {images.length > 0 &&
+            images.map((image) => <img src={image} alt="xx" />)}
+        </div>
         <Button variant="secondary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
