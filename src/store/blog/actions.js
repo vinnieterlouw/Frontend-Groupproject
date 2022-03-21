@@ -55,6 +55,7 @@ export const createBlog = (title,description,urls,location,place,visitedOn)=> {
     return async function thunk(dispatch,getState){
     try{
       const detailresponse = await axios.get(`${apiUrl}/blogs/viewblog/${id}`);
+      console.log("detail",detailresponse);
       dispatch(viewBlogbyId(detailresponse.data));
      
     }

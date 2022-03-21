@@ -8,7 +8,9 @@ export default function BlogDetail(){
     const { id } = useParams();
     const dispatch = useDispatch();
     const blogdetail = useSelector(selectBlogDetail);
+
     useEffect(() => {
+        console.log("going useeffect");
         dispatch(fetchBlogDetails(id));    
       }, [dispatch,id])
     return (

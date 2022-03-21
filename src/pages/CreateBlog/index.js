@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Form,Col,Row,Button } from "react-bootstrap";
 import { createBlog } from "../../store/blog/actions";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { apiUrl } from "../../config/constants";
 export default function CreateBlog(){
-
+    const id=6;
     const dispatch = useDispatch();
     const [title,setTitle] = useState();
     const [description,setDescription] = useState();
@@ -76,6 +78,7 @@ export default function CreateBlog(){
             <Button variant="secondary" type="submit" onClick={handleSubmit}>
              Submit
             </Button>  
+            <Link to={`/blogs/viewblog/${id}`}>View more</Link>
         </Form>
     </div>
     )
