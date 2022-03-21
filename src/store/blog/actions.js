@@ -17,6 +17,17 @@ export const viewBlogbyId = (data) => ({
   type: VIEW_BLOG_DETAIL,
   payload: data,
 });
+export function allBlogsWithUserNameFetched(data) {
+  return {
+    type: "blogs/getAllBlogsWithUserName",
+    payload: data,
+  };
+}
+export function startLoading() {
+  return {
+    type: "blogs/loading",
+  };
+}
 export const createBlog = (
   title,
   description,
@@ -70,3 +81,13 @@ export function fetchBlogDetails(id) {
     }
   };
 }
+
+
+export async function fetchAllBlogsWithUserName(dispatch, getState) {
+  dispatch(startLoading());
+  const response = await axios.get(`${apiUrl}/blogs/viewblogwithusername`);
+  console.log("thunk blogs", response.data);
+
+  dispatch(allBlogsWithUserNameFetched(response.data));
+}
+

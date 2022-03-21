@@ -10,24 +10,25 @@ export default function BlogDetail() {
   const dispatch = useDispatch();
   const blogdetail = useSelector(selectBlogDetail);
   useEffect(() => {
+    console.log("going here")
     dispatch(fetchBlogDetails(id));
   }, [dispatch, id]);
   return (
-    <div>
-      <div>
-        <Card style={{ width: "50rem" }}>
-          <Card.Text>{blogdetail.description}</Card.Text>
-        </Card>
+    <div  className="flex flex-col md:flex-row md:max-w-l md:h-30 rounded-lg bg-white shadow-lg" >
+      <div className="flex justify-left m-3">
+        
+          {blogdetail.description}
+        
       </div>
 
-      <div style={{ height: "520px", width: "530px" }}>
-        {blogdetail.moreImages.length > 0 ? (
+      <div className="w-500">
+        {!blogdetail ? "Loading" : blogdetail.moreImages?.length > 0 ? (
           <Carousel className="mt-5">
             {blogdetail.moreImages.map((eachimg) => {
               return (
                 <Carousel.Item key={eachimg.id}>
                   <img
-                    className="d-block w-100"
+                    className="d-block w-100 object-fill:fill"
                     src={eachimg.ImageUrl}
                     alt={blogdetail.title}
                   />

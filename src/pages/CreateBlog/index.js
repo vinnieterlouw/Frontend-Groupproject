@@ -4,36 +4,9 @@ import { createBlog } from "../../store/blog/actions";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { apiUrl } from "../../config/constants";
-export default function CreateBlog(){
-    const id=6;
-    const dispatch = useDispatch();
-    const [title,setTitle] = useState();
-    const [description,setDescription] = useState();
-    const [location,setLocation] = useState();
-    const [place,setPlace] = useState();
-    const [visitedOn,setvisitedOn] = useState();
-    const urls=[];
-    const [images,setImages] = useState(urls);
-    function handleSubmit(event){
-        event.preventDefault();
-        dispatch(createBlog(title,description,images,location,place,visitedOn));
+import { useSelector } from "react-redux";
+import { selectUser } from "../../store/user/selectors";    
 
-    }
-    const uploadImage = async(e) => {
-        const files = e.target.files
-        const data = new FormData()
-        for (let i = 0; i < files.length; i++) {
-            let fileurl = files[i];
-            data.append("file", fileurl)
-        //first parameter is always upload_preset, second is the name of the preset
-            data.append('upload_preset', "gej9u76y")
-            const res = await fetch("https://api.cloudinary.com/v1_1/portfolioherhelp/image/upload", {
-            method: "POST",
-            body: data
-      })
-=======
-import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../../store/user/selectors";
 export default function CreateBlog() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -44,6 +17,7 @@ export default function CreateBlog() {
   const [visitedOn, setvisitedOn] = useState();
   const urls = [];
   const [images, setImages] = useState(urls);
+
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -119,7 +93,6 @@ export default function CreateBlog() {
             <Button variant="secondary" type="submit" onClick={handleSubmit}>
              Submit
             </Button>  
-            <Link to={`/blogs/viewblog/${id}`}>View more</Link>
         </Form>
     </div>
   );
