@@ -1,0 +1,1 @@
+export const selectBlogDetail = (state) => state.blogs.blogDetail;
