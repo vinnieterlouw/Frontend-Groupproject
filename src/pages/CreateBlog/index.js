@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form,Col,Row,Button } from "react-bootstrap";
+import { Form, Col, Row, Button } from "react-bootstrap";
 import { createBlog } from "../../store/blog/actions";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -31,6 +31,47 @@ export default function CreateBlog(){
             method: "POST",
             body: data
       })
+=======
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../../store/user/selectors";
+export default function CreateBlog() {
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+  const [title, setTitle] = useState();
+  const [description, setDescription] = useState();
+  const [location, setLocation] = useState();
+  const [place, setPlace] = useState();
+  const [visitedOn, setvisitedOn] = useState();
+  const urls = [];
+  const [images, setImages] = useState(urls);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const userId = user.id;
+    dispatch(
+      createBlog(title, description, images, location, place, visitedOn, userId)
+    );
+    setTitle("");
+    setDescription("");
+    setLocation("");
+    setPlace("");
+    setvisitedOn("dd-mm-jjjj");
+  }
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      let fileurl = files[i];
+      data.append("file", fileurl);
+      //first parameter is always upload_preset, second is the name of the preset
+      data.append("upload_preset", "gej9u76y");
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/portfolioherhelp/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
       const file = await res.json();
       urls.push(file.url);
     }
@@ -81,5 +122,5 @@ export default function CreateBlog(){
             <Link to={`/blogs/viewblog/${id}`}>View more</Link>
         </Form>
     </div>
-    )
+  );
 }
