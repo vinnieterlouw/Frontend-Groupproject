@@ -8,7 +8,7 @@ import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
-
+import CreateBlog from "./pages/CreateBlog";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
@@ -38,6 +38,7 @@ function App() {
         <Route path="/other" element={<Other />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="blogs/createblog" element={<CreateBlog/>} />
       </Routes>
     </div>
   );
