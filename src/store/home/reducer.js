@@ -1,11 +1,11 @@
-const initialState = { home: null };
+const initialState = { homeData: null };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case "home/getHomeData": {
       return {
         ...state,
-        home: [action.payload],
+        homeData: action.payload,
       };
     }
 
