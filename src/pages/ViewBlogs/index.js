@@ -7,8 +7,8 @@ import { useDispatch } from "react-redux";
 import { dataHomepage } from "../../store/home/actions";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { selectAllBlogsWithUserName } from "../../store/blogs/selectors";
-import { fetchAllBlogsWithUserName } from "../../store/blogs/actions";
+import { selectAllBlogsWithUserName } from "../../store/blog/selector";
+import { fetchAllBlogsWithUserName } from "../../store/blog/actions";
 import { selectHomeData } from "../../store/home/selector";
 import React from "react";
 import { NavLink } from "react-router-dom";
@@ -94,9 +94,9 @@ export default function ViewBlogs() {
                     <p className="text-gray-700 text-base mb-10">
                       <b>Location:</b> {blog.location}
                     </p>
-                    <NavLink to={`/blogs/${blog.id}`}>
+                    <NavLink to={`/blogs/viewblog/${blog.id}`}>
                       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        View
+                        Know Experience
                       </button>
                     </NavLink>
                   </div>
