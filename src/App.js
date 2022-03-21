@@ -8,6 +8,7 @@ import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
+import ViewBlogs from "./pages/ViewBlogs";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -35,7 +36,8 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Routes>
         <Route exact path="/" element={<Homepage />} />
-        <Route path="/other" element={<Other />} />
+        <Route path="/blogs" element={<ViewBlogs />} />
+        <Route path="/blogs/:blogsId" element={<ViewBlogs />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>

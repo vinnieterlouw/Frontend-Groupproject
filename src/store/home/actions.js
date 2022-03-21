@@ -5,18 +5,17 @@ export const getHomeData = (homeData) => ({
   payload: homeData,
 });
 
-export const dataHomepage = (lat, lng) => {
+export const dataHomepage = (lat, lng, radius, placeType) => {
   return async (dispatch, getState) => {
     try {
-      const response =
-        await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json
-            ?keyword=cruise
-            &location=${lat}%2C${lng}
-            &radius=100
-            &type=restaurant
-            &key=AIzaSyDGnhMSdxZWn2pTKvaimAKqZif3PqA7LwY`);
-      console.log(response);
-      dispatch(getHomeData(response));
+      const response = await axios.post("http://localhost:4000/homeData", {
+        lat,
+        lng,
+        radius,
+        placeType,
+      });
+
+      dispatch(getHomeData(response.data.homeData.results));
     } catch (error) {
       console.log(error);
     }
