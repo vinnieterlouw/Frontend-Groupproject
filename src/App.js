@@ -37,8 +37,8 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Routes>
         <Route exact path="/" element={<Homepage />} />
-        <Route path="/blogs" element={<ViewBlogs />} />
-        <Route path="/blogs/:blogsId" element={<ViewBlogs />} />
+        {/* <Route path="/blogs" element={<ViewBlogs />} />
+        <Route path="/blogs/:blogsId" element={<ViewBlogs />} /> */}
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="blogs/createblog" element={<CreateBlog/>} />
