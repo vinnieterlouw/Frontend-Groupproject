@@ -38,7 +38,7 @@ export default function BlogDetail() {
             })}
           </Carousel>
         ) : (
-          "Images yet to Upload"
+          "No images uploaded."
         )}
       </div>
     </div>

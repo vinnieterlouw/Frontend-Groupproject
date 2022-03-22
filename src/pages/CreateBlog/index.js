@@ -24,11 +24,13 @@ export default function CreateBlog() {
     dispatch(
       createBlog(title, description, images, location, place, visitedOn, userId)
     );
+    setImages("");
     setTitle("");
     setDescription("");
     setLocation("");
     setPlace("");
     setvisitedOn("dd-mm-jjjj");
+    
   }
   const uploadImage = async (e) => {
     const files = e.target.files;
@@ -151,8 +153,7 @@ export default function CreateBlog() {
             Upload Pictures
           </Form.Label>
           <Col sm={4}>
-            <Form.Control
-              type="file"
+            <Form.Control type="file"
               multiple
               onClick={(e) => e.stopPropagation()}
               onChange={uploadImage}
@@ -164,12 +165,17 @@ export default function CreateBlog() {
           </Form.Label>
         </Form.Group>
 
-        <div className="imagecontainer">
+        {/* <div className="imagecontainer" style={{display:images.length>0?"flex" :"none"}}> */}
+
+        {
+        images.length>0 && 
+          <div className="imagecontainer" >
           {images.length > 0 &&
             images.map((image) => (
               <img src={image} alt="xx" className="imgdimension" />
-            ))}
+              ))}
         </div>
+            }
         <div style={{ marginTop: "10px" }}>
           <Button variant="secondary" type="submit" onClick={handleSubmit}>
             Submit
