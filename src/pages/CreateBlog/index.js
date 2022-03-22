@@ -31,7 +31,6 @@ export default function CreateBlog() {
     setvisitedOn("dd-mm-jjjj");
   }
   const uploadImage = async (e) => {
-   
     const files = e.target.files;
     const data = new FormData();
     for (let i = 0; i < files.length; i++) {
@@ -51,7 +50,6 @@ export default function CreateBlog() {
     }
     console.log(urls);
     setImages(urls);
-    
   };
   return (
     <div
@@ -147,7 +145,7 @@ export default function CreateBlog() {
             />
           </Col>
         </Form.Group>
-       
+
         <Form.Group as={Row} controlId="formFile" className="mb-3">
           <Form.Label column sm={4}>
             Upload Pictures
@@ -160,19 +158,22 @@ export default function CreateBlog() {
               onChange={uploadImage}
             />
           </Col>
-          <Form.Label column sm={4}>
+
+          <Form.Label column sm={4} className="mr-6">
             Please wait for image preview
           </Form.Label>
         </Form.Group>
-        
+
         <div className="imagecontainer">
           {images.length > 0 &&
-            images.map((image) => <img src={image} alt="xx" className="imgdimension"/>)}
+            images.map((image) => (
+              <img src={image} alt="xx" className="imgdimension" />
+            ))}
         </div>
-        <div style={{marginTop:"10px"}}>
-        <Button variant="secondary" type="submit" onClick={handleSubmit}>
-          Submit
-        </Button>
+        <div style={{ marginTop: "10px" }}>
+          <Button variant="secondary" type="submit" onClick={handleSubmit}>
+            Submit
+          </Button>
         </div>
       </Form>
     </div>
