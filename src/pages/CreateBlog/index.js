@@ -48,6 +48,7 @@ export default function CreateBlog() {
       urls.push(file.url);
     }
     setImages(urls);
+    console.log("urls",urls);
   };
   return (
     <div
