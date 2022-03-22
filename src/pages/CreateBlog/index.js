@@ -49,6 +49,7 @@ export default function CreateBlog() {
     }
     console.log(urls);
     setImages(urls);
+    console.log("urls",urls);
   };
   return (
     <div
