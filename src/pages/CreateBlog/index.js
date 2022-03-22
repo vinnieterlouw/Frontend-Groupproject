@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/user/selectors";
-
+import "./style.css";
+import { blue } from "@mui/material/colors";
 export default function CreateBlog() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function CreateBlog() {
   const [visitedOn, setvisitedOn] = useState();
   const urls = [];
   const [images, setImages] = useState(urls);
-
+  // const [loading,setLoading] = useState(false);
   function handleSubmit(event) {
     event.preventDefault();
     const userId = user.id;
@@ -30,6 +31,7 @@ export default function CreateBlog() {
     setvisitedOn("dd-mm-jjjj");
   }
   const uploadImage = async (e) => {
+   
     const files = e.target.files;
     const data = new FormData();
     for (let i = 0; i < files.length; i++) {
@@ -49,7 +51,7 @@ export default function CreateBlog() {
     }
     console.log(urls);
     setImages(urls);
-    console.log("urls",urls);
+    
   };
   return (
     <div
@@ -145,6 +147,7 @@ export default function CreateBlog() {
             />
           </Col>
         </Form.Group>
+       
         <Form.Group as={Row} controlId="formFile" className="mb-3">
           <Form.Label column sm={4}>
             Upload Pictures
@@ -156,16 +159,21 @@ export default function CreateBlog() {
               onClick={(e) => e.stopPropagation()}
               onChange={uploadImage}
             />
-            <p>Wait for preview before uploading</p>
           </Col>
+          <Form.Label column sm={4}>
+            Please wait for image preview
+          </Form.Label>
         </Form.Group>
-        <div className="upload-image">
+        
+        <div className="imagecontainer">
           {images.length > 0 &&
-            images.map((image) => <img src={image} alt="xx" />)}
+            images.map((image) => <img src={image} alt="xx" className="imgdimension"/>)}
         </div>
+        <div style={{marginTop:"10px"}}>
         <Button variant="secondary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
+        </div>
       </Form>
     </div>
   );
